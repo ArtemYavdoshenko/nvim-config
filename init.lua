@@ -272,6 +272,7 @@ require('lazy').setup({
     end,
   },
   { 'wakatime/vim-wakatime', lazy = false },
+  { 'mfussenegger/nvim-jdtls' },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
