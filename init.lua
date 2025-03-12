@@ -276,6 +276,14 @@ require('lazy').setup({
   },
   { 'wakatime/vim-wakatime', lazy = false },
   { 'mfussenegger/nvim-jdtls' },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'EdenEast/nightfox.nvim' },
+  {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = { -- set to setup table
+    },
+  },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -906,7 +914,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-storm'
+      vim.cmd.colorscheme 'dayfox'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -941,7 +949,7 @@ require('lazy').setup({
       -- set use_icons to true if you have a Nerd Font
       statusline.setup { use_icons = vim.g.have_nerd_font }
       require('lualine').setup {
-        options = { theme = 'nightfly' },
+        options = { theme = 'dayfox' },
       }
 
       -- You can configure sections in the statusline by overriding their
@@ -1032,6 +1040,26 @@ require('lazy').setup({
 
 -- Set language to English:
 vim.cmd 'language en_US'
+
+-- Add command to switch themes
+function ToggleTheme()
+  if vim.o.background == 'dark' then
+    vim.o.background = 'light'
+    vim.cmd 'colorscheme dayfox'
+    require('lualine').setup {
+      options = { theme = 'dayfox' },
+    }
+  else
+    vim.o.background = 'dark'
+    vim.cmd 'colorscheme carbonfox'
+    require('lualine').setup {
+      options = { theme = 'carbonfox' },
+    }
+  end
+end
+
+vim.api.nvim_create_user_command('ToggleTheme', ToggleTheme, {})
+vim.keymap.set('n', '<leader>tt', '<Cmd>ToggleTheme<CR>', { desc = 'Toggle Light/Dark Theme' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
