@@ -1,5 +1,13 @@
 # kickstart.nvim
 
+## What is changed in this fork?
+- Better defaults (for my use cases)
+- Added some plugins (such as language servers, nvim-colorizer, lualine, etc, everything for my use cases again)
+- Added themes and a shortcut to change between the light and the dark theme (<leader>tt)
+- Other minor changes
+
+![image](./screenshot.png)
+
 ## Introduction
 
 A starting point for Neovim that is:
